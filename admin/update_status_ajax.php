@@ -45,3 +45,19 @@ mysqli_query($conn,"
 ");
 
 echo "OK";
+
+$ticket = mysqli_fetch_assoc(mysqli_query($conn,"
+    SELECT user_id FROM tickets WHERE id = $id
+"));
+
+mysqli_query($conn,"
+    INSERT INTO notifications (user_id, role, type, message, link)
+    VALUES (
+        {$ticket['user_id']},
+        'user',
+        'status',
+        'Status ticket #$id berubah menjadi $status',
+        '/cr/tickets/detail.php?id=$id'
+    )
+");
+

@@ -13,6 +13,17 @@ if($_POST){
     '".mysqli_real_escape_string($conn,$_POST['description'])."'
   )");
 
+  mysqli_query($conn,"
+    INSERT INTO notifications (role, type, message, link)
+    VALUES (
+        'admin',
+        'ticket',
+        'Ticket baru dibuat',
+        '/cr/admin/tickets.php'
+    )
+");
+
+
   $ticket_id = mysqli_insert_id($conn);
 
   foreach($_FILES['files']['name'] as $i=>$name){

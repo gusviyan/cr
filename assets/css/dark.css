@@ -371,3 +371,79 @@ body.login-page {
   text-align: center;
   margin-bottom: 20px;
 }
+
+/* NOTIFICATION */
+.notif-wrapper {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+}
+
+#notif-icon {
+  font-size: 20px;
+}
+
+#notif-badge {
+  background: #ef4444;
+  color: white;
+  font-size: 11px;
+  border-radius: 50%;
+  padding: 2px 6px;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+}
+
+.notif-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 30px;
+  width: 320px;
+  background: rgba(15,23,42,.85);
+  backdrop-filter: blur(16px);
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.5);
+  overflow: hidden;
+  z-index: 2000;
+}
+
+.notif-dropdown.show {
+  display: block;
+}
+
+.notif-title {
+  padding: 12px;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.notif-item {
+  display: block;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #e5e7eb;
+}
+
+.notif-item.unread {
+  background: rgba(56,189,248,.15);
+}
+
+.notif-item:hover {
+  background: rgba(255,255,255,.08);
+}
+
+.notif-item .time {
+  font-size: 11px;
+  opacity: .7;
+}
+
+.notif-item.unread {
+  background: rgba(56,189,248,.15);
+  font-weight: 600;
+}
+
+.notif-item {
+  cursor: pointer;
+}
+

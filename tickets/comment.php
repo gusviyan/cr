@@ -28,5 +28,37 @@ mysqli_query($conn,"
     VALUES ($ticket_id, $user_id, '$comment')
 ");
 
+/* NOTIFIKASI */
+$ticket = mysqli_fetch_assoc(mysqli_query($conn,"
+    SELECT user_id FROM tickets WHERE id = $ticket_id
+"));
+
+/* USER KOMENTAR → ADMIN */
+if ($_SESSION['user']['role'] === 'user') {
+    mysqli_query($conn,"
+        INSERT INTO notifications (role, type, message, link)
+        VALUES (
+            'admin',
+            'comment',
+            'Komentar baru pada ticket #$ticket_id',
+            '/cr/tickets/detail.php?id=$ticket_id'
+        )
+    ");
+}
+
+/* ADMIN KOMENTAR → USER */
+if ($_SESSION['user']['role'] === 'admin') {
+    mysqli_query($conn,"
+        INSERT INTO notifications (user_id, role, type, message, link)
+        VALUES (
+            {$ticket['user_id']},
+            'user',
+            'comment',
+            'Admin membalas ticket #$ticket_id',
+            '/cr/tickets/detail.php?id=$ticket_id'
+        )
+    ");
+}
+
 header("Location: detail.php?id=$ticket_id");
 exit;
