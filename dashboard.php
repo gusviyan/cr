@@ -43,10 +43,10 @@ foreach ($statuses as $s => $icon) {
 
 <div class="dashboard-header">
   <h2>Dashboard</h2>
-  <span class="dashboard-sub">
+  <!-- <span class="dashboard-sub">
     <?= $isAdmin ? 'Overview semua tiket' : 'Ringkasan tiket Anda' ?>
   </span>
-</div>
+</div> -->
 
 <div class="dashboard-grid">
 

@@ -6,11 +6,28 @@
   font-family: "Segoe UI", Arial, sans-serif;
 }
 
+h2, h3, h4, h5, h6 {
+  color: #e5e7eb;
+}
+
+label {
+  color: #cbd5f5;
+  font-weight: 600;
+}
+
+p {
+  color: #e5e7eb;
+  line-height: 1.6;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
-  background: radial-gradient(circle at top, #101112, #020617);
-  color: #e5e7eb;
+  /* background: radial-gradient(circle at top, #101112, #020617);
+  color: #e5e7eb; */
+  background-image: url('../images/bg.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 /* LINK GLOBAL */
@@ -68,6 +85,7 @@ a:hover {
 }
 
 .header .title {
+  color: white;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -138,6 +156,7 @@ a:hover {
 .card,
 .detail-card,
 .dash-card {
+  color: whitesmoke;
   background: rgba(15, 23, 42, 0.55);
   backdrop-filter: blur(14px);
   border: 1px solid rgba(148,163,184,.15);
@@ -170,6 +189,7 @@ table {
 }
 
 th, td {
+  color: #e5e7eb;
   padding: 14px 12px;
   border-bottom: 1px solid rgba(148,163,184,.15);
 }
@@ -255,15 +275,18 @@ button:hover {
 }
 
 .comment-author {
-  font-weight: 600;
+  color: #cbd5f5;
+  font-weight: 800;
   margin-bottom: 4px;
 }
 
 .comment-text {
+  color: #e5e7eb;
   margin-bottom: 6px;
 }
 
 .comment-time {
+  color: #94a3b8;
   font-size: 12px;
   opacity: .7;
 }
@@ -285,6 +308,15 @@ button:hover {
   gap: 20px;
 }
 
+.dashboard-sub {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #e5e7eb;
+}
+
+
 .dash-card {
   display: flex;
   align-items: center;
@@ -296,11 +328,13 @@ button:hover {
 }
 
 .dash-label {
+  color: #cbd5f5;
   font-size: 14px;
   color: #94a3b8;
 }
 
 .dash-value {
+  color: #e5e7eb;
   font-size: 30px;
   font-weight: bold;
 }
@@ -415,7 +449,7 @@ body.login-page {
 .notif-title {
   padding: 12px;
   font-weight: bold;
-  border-bottom: 1px solid rgba(255,255,255,.1);
+  border-bottom: 1px solid rgb(252, 252, 252);
 }
 
 .notif-item {
