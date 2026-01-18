@@ -32,6 +32,15 @@ $current = basename($_SERVER['PHP_SELF']);
     </a>
   <?php endif; ?>
 
+  <?php if ($_SESSION['user']['role'] === 'admin'): ?>
+<li>
+    <a href="/cr/admin/change_password.php">
+        🔐 Ganti Password
+    </a>
+</li>
+<?php endif; ?>
+
+
   <a href="<?= BASE_URL ?>/logout.php">
     🚪 <span>Logout</span>
   </a>

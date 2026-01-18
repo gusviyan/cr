@@ -63,9 +63,10 @@ $comments = mysqli_query($conn,"
 <div class="detail-card">
 
     <h3><?= htmlspecialchars($t['title']) ?></h3>
+    <hr>
 
     <p><?= nl2br(htmlspecialchars($t['description'])) ?></p>
-
+    <hr>
     <p>
         <b>Status:</b> <?= htmlspecialchars($t['status']) ?><br>
         <b>Dibuat oleh:</b> <?= htmlspecialchars($t['user_name']) ?><br>
