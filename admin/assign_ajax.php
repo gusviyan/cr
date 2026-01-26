@@ -7,29 +7,32 @@ if ($_SESSION['user']['role'] !== 'admin') {
     exit;
 }
 
-$ticket_id = intval($_POST['ticket_id']);
-$admin_id  = $_POST['admin_id'] !== '' ? intval($_POST['admin_id']) : NULL;
+$ticket_id = intval($_POST['ticket_id'] ?? 0);
+$admin_id  = intval($_POST['admin_id'] ?? 0);
 
-/* validasi admin_id */
-if ($admin_id !== NULL) {
-    $cek = mysqli_query($conn,"
-        SELECT id FROM users 
-        WHERE id=$admin_id AND role='admin'
-    ");
-    if (mysqli_num_rows($cek) === 0) {
-        http_response_code(400);
-        exit;
-    }
+if ($ticket_id <= 0) {
+    echo "ERR";
+    exit;
 }
 
-/* update assign */
-if ($admin_id === NULL) {
+/* ASSIGN ADMIN */
+if ($admin_id > 0) {
+
     mysqli_query($conn,"
-        UPDATE tickets SET assigned_by=NULL WHERE id=$ticket_id
+        UPDATE tickets
+        SET assigned_by = $admin_id,
+            assigned_at = NOW()
+        WHERE id = $ticket_id
     ");
+
 } else {
+
+    /* UNASSIGN */
     mysqli_query($conn,"
-        UPDATE tickets SET assigned_by=$admin_id WHERE id=$ticket_id
+        UPDATE tickets
+        SET assigned_by = NULL,
+            assigned_at = NULL
+        WHERE id = $ticket_id
     ");
 }
 

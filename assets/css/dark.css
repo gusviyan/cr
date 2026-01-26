@@ -277,7 +277,7 @@ button:hover {
 
 .comment-author {
   color: #cbd5f5;
-  font-weight: 800;
+  font-weight: 600;
   margin-bottom: 4px;
 }
 
@@ -855,7 +855,7 @@ body.login-page {
 
 /* ===== SELECT (DROPDOWN) ===== */
 select {
-    width: 100%;
+    width: 75%;
     padding: 12px 14px;
     border-radius: 10px;
     border: 1px solid rgba(255,255,255,0.15);
@@ -902,4 +902,14 @@ select option:hover {
 select option:checked {
     background-color: #2563eb;
     color: #ffffff;
+}
+
+.ticket-title-link {
+  color: #93c5fd;
+  font-weight: 600;
+}
+
+.ticket-title-link:hover {
+  color: #38bdf8;
+  text-decoration: underline;
 }

@@ -58,7 +58,9 @@ while ($a = mysqli_fetch_assoc($admins)) {
 
 /* ================= DATA TICKETS ================= */
 $q = mysqli_query($conn,"
-    SELECT t.*, u.name AS user_name
+    SELECT 
+        t.*,
+        u.name AS user_name
     FROM tickets t
     JOIN users u ON u.id = t.user_id
     $where
@@ -100,8 +102,10 @@ function sortLink($label, $key, $sort, $order, $search) {
                     <th><?= sortLink('User','user',$sort,$order,$search) ?></th>
                     <th><?= sortLink('Status','status',$sort,$order,$search) ?></th>
                     <th>Assign To</th>
-                    <th><?= sortLink('Date','created_at',$sort,$order,$search) ?></th>
-                    <th>Aksi</th>
+<th><?= sortLink('Created Date','created_at',$sort,$order,$search) ?></th>
+<th>Assigned Date</th>
+<th>Resolved Date</th>
+
                 </tr>
             </thead>
 
@@ -109,9 +113,16 @@ function sortLink($label, $key, $sort, $order, $search) {
             <?php while ($t = mysqli_fetch_assoc($q)): ?>
                 <tr>
                     <td><?= $t['id'] ?></td>
-                    <td><?= htmlspecialchars($t['title']) ?></td>
+                    <td>
+    <a href="/cr/tickets/detail.php?id=<?= $t['id'] ?>"
+       class="ticket-title-link">
+        <?= htmlspecialchars($t['title']) ?>
+    </a>
+</td>
+
                     <td><?= htmlspecialchars($t['user_name']) ?></td>
 
+                    <!-- STATUS -->
                     <td>
                         <select onchange="updateStatus(this, <?= $t['id'] ?>)">
                             <?php foreach(['New','In Progress','Resolved','Closed'] as $s): ?>
@@ -123,6 +134,7 @@ function sortLink($label, $key, $sort, $order, $search) {
                         <span id="status-msg-<?= $t['id'] ?>" class="inline-msg"></span>
                     </td>
 
+                    <!-- ASSIGN -->
                     <td>
                         <select onchange="assignTo(this, <?= $t['id'] ?>)">
                             <option value="">-</option>
@@ -136,13 +148,23 @@ function sortLink($label, $key, $sort, $order, $search) {
                         <span id="assign-msg-<?= $t['id'] ?>" class="inline-msg"></span>
                     </td>
 
-                    <td><?= $t['created_at'] ?></td>
+                    <!-- CREATED DATE -->
+                    <td><?= date('d-m-Y', strtotime($t['created_at'])) ?></td>
 
+                    <!-- ASSIGNED DATE -->
                     <td>
-                        <a href="/cr/tickets/detail.php?id=<?= $t['id'] ?>">
-                            Detail
-                        </a>
+                        <?= $t['assigned_at']
+                            ? date('d-m-Y', strtotime($t['assigned_at']))
+                            : '-' ?>
                     </td>
+
+                    <!-- SOLVED DATE -->
+                    <td>
+                        <?= $t['solved_at']
+                            ? date('d-m-Y', strtotime($t['solved_at']))
+                            : '-' ?>
+                    </td>
+
                 </tr>
             <?php endwhile; ?>
             </tbody>
